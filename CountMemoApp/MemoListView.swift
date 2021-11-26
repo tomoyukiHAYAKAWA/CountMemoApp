@@ -3,14 +3,22 @@ import SwiftUI
 struct MemoListView: View {
     
     @ObservedObject var viewModel = MemoListViewModel()
+    @State private var showingAddMemoView = false
     
     var body: some View {
-        NavigationView{
-            List(viewModel.memos) { memo in
-                MemoListRow(memo: memo)
+        NavigationView {
+            VStack {
+                NavigationLink(destination: AddMemoView(),
+                               isActive: self.$showingAddMemoView) { EmptyView() }
+                List(viewModel.memos) { memo in
+                    MemoListRow(memo: memo)
+                }
+                .listStyle(PlainListStyle())
+                .navigationBarTitle("メモ一覧", displayMode: .inline)
+                .navigationBarItems(
+                    trailing: Button(action: { self.showingAddMemoView = true }) { Image(systemName: "plus") }
+                )
             }
-            .listStyle(PlainListStyle())
-            .navigationBarTitle("メモ一覧", displayMode: .inline)
         }
     }
 }
