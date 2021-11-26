@@ -14,9 +14,9 @@ struct MemoListView: View {
                     MemoListRow(memo: memo)
                 }
                 .listStyle(PlainListStyle())
-                .navigationBarTitle("メモ一覧", displayMode: .inline)
+                .navigationBarTitle("🗒", displayMode: .inline)
                 .navigationBarItems(
-                    trailing: Button(action: { self.showingAddMemoView = true }) { Image(systemName: "plus") }
+                    trailing: Button(action: { self.showingAddMemoView = true }) { Text("✍️") }
                 )
             }
         }
