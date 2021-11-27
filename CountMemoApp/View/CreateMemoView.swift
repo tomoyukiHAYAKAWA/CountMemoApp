@@ -3,9 +3,22 @@ import SwiftUI
 struct CreateMemoView: View {
     
     @State private var saveMemo = false
+    @State private var isEditing = false
+    @State private var title = ""
     
     var body: some View {
         VStack {
+            TextField("タイトルを入力...!(なしでもOK👍)", text: $title,
+                onEditingChanged: { isEditing in
+                    self.isEditing = isEditing
+                },
+                onCommit: {
+                    self.title = title
+                }
+            )
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .shadow(color: isEditing ? .blue : .clear, radius: 3)
             TextView() { textView in
                 textView.text = "タップで入力開始...！"
                 textView.font = .systemFont(ofSize: 16)
