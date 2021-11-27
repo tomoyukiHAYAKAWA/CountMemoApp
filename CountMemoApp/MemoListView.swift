@@ -8,10 +8,12 @@ struct MemoListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: AddMemoView(),
+                NavigationLink(destination: CreateMemoView(),
                                isActive: self.$showingAddMemoView) { EmptyView() }
-                List(viewModel.memos) { memo in
-                    MemoListRow(memo: memo)
+                List (viewModel.memos) { memo in
+                    NavigationLink(destination: EditMemoView(memo: memo)) {
+                        MemoListRow(memo: memo)
+                    }
                 }
                 .listStyle(PlainListStyle())
                 .navigationBarTitle("🗒", displayMode: .inline)
@@ -28,17 +30,22 @@ struct MemoListRow: View {
     var memo: Memo
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 5, content: {
-                let title = memo.title ?? "タイトル🙅‍♂️のメモ"
-                let sumCount = memo.sumCount ?? "なし🙅‍♂️"
-                Text(title)
+        VStack(alignment: .leading, spacing: 3, content: {
+            let title = memo.title ?? "タイトルなし"
+            Text(title)
+                .fontWeight(.bold)
+            HStack(alignment: .bottom, spacing: 3, content:  {
+                let sumCount = memo.sumCount ?? "なし"
                 Text("カウント: \(String(sumCount))")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                Spacer()
+                Text("作成日: \(memo.registrationDate!)")
+                    .font(.caption)
+                    .foregroundColor(.gray)
             })
+        })
             .padding()
-            let registrationDate = memo.registrationDate!
-            Text(registrationDate)
-        }
     }
 }
 
