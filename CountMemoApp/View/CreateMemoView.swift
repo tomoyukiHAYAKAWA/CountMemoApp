@@ -5,19 +5,37 @@ struct CreateMemoView: View {
     @State private var saveMemo = false
     
     var body: some View {
-        VStack{
+        VStack {
             TextView() { textView in
                 textView.text = "タップで入力開始...！"
                 textView.font = .systemFont(ofSize: 16)
             }
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-                .frame(maxWidth:.infinity, maxHeight: .infinity)
-                .navigationBarTitle("✍️", displayMode: .inline)
-                .navigationBarItems(
-                    trailing: Button(action: { self.saveMemo = true }) { Text("👍") }
-                )
+            BottomBorder(width: 1)
+                .foregroundColor(.gray)
+            HStack {
+                Text("計算結果なし")
+                Spacer()
+                Button( action: {
+                }) { Text("計算する")
+                        .fontWeight(.semibold)
+                        .frame(width: 100, height: 44)
+                        .foregroundColor(Color.blue)
+                        .background(Color(.white))
+                        .cornerRadius(22)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 22)
+                                .stroke(Color.blue, lineWidth: 1.0)
+                        )
+                }
+            }
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+            .navigationBarTitle("✍️", displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button(action: { self.saveMemo = true }) { Text("👍") }
+            )
         }
+        .onTapGesture { UIApplication.shared.closeKeyboard() }
     }
 }
 
