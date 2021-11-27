@@ -52,11 +52,11 @@
 		CC0AA91B2751389C00B0452D /* CountMemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountMemoAppUITests.swift; sourceTree = "<group>"; };
 		CC0AA91D2751389C00B0452D /* CountMemoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountMemoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CC0AA92A2751398100B0452D /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
-		CC0AA92C27513C2500B0452D /* MemoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoModel.swift; sourceTree = "<group>"; };
-		CC0AA92E27513DE800B0452D /* MemoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewModel.swift; sourceTree = "<group>"; };
+		CC0AA92C27513C2500B0452D /* MemoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoModel.swift; path = Entities/MemoModel.swift; sourceTree = "<group>"; };
+		CC0AA92E27513DE800B0452D /* MemoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoListViewModel.swift; path = ViewModel/MemoListViewModel.swift; sourceTree = "<group>"; };
 		CC0AA93227515BFB00B0452D /* CreateMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoView.swift; sourceTree = "<group>"; };
 		CC0AA9342751DAB600B0452D /* EditMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoView.swift; sourceTree = "<group>"; };
-		CC0AA9362751EC1900B0452D /* CreateMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewModel.swift; sourceTree = "<group>"; };
+		CC0AA9362751EC1900B0452D /* CreateMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateMemoViewModel.swift; path = ViewModel/CreateMemoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
