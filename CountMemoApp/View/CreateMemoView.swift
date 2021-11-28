@@ -23,7 +23,7 @@ struct CreateMemoView: View {
                 textView.text = "タップで入力開始...！"
                 textView.font = .systemFont(ofSize: 16)
             }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
             BottomBorder(width: 1)
                 .foregroundColor(.gray)
             HStack {
@@ -45,7 +45,7 @@ struct CreateMemoView: View {
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
             .navigationBarTitle("✍️", displayMode: .inline)
             .navigationBarItems(
-                trailing: Button(action: { self.saveMemo = true }) { Text("👍") }
+                trailing: Button(action: { self.saveMemo = true }) { Text("👌") }
             )
         }
         .onTapGesture { UIApplication.shared.closeKeyboard() }
