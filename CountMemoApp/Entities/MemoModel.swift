@@ -1,16 +1,28 @@
 import Foundation
+import RealmSwift
 
-struct Memo: Identifiable {
-    var id = UUID()
-    var title: String?
-    var content: String!
-    var sumCount: String?
-    var registrationDate: String!
-    
-    init(title: String?, content: String, sumCount: String?, registrationDate: String) {
-        self.title = title
-        self.content = content
-        self.sumCount = sumCount
-        self.registrationDate = registrationDate
+class Memo: Object, Identifiable {
+    @objc dynamic var id = UUID()
+    @objc dynamic var title: String?
+    @objc dynamic var content: String!
+    @objc dynamic var sumCount: String?
+    @objc dynamic var registrationDate: String!
+
+    private static var realm = try! Realm()
+
+    static func fetchAllMemos() -> Results<Memo> {
+        return realm.objects(Memo.self)
+    }
+
+    static func addMemo(memo: Memo) {
+        try! realm.write {
+            realm.add(memo)
+        }
+    }
+
+    static func deleteMemo(memo: Memo) {
+        try! realm.write {
+            realm.delete(memo)
+        }
     }
 }

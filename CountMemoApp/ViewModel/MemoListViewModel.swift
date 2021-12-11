@@ -1,8 +1,27 @@
 import Foundation
 import SwiftUI
+import RealmSwift
 
 class MemoListViewModel: ObservableObject {
-    @Published private(set) var memos: [Memo] = [Memo.init(title: "メモ1", content: "あああああ", sumCount: "2000", registrationDate: "2021/11/25"),
-                                                 Memo.init(title: "メモ2", content: "いいいいい", sumCount: "21000", registrationDate: "2021/11/27"),
-                                                 Memo.init(title: nil, content: "いいいいい", sumCount: nil, registrationDate: "2021/11/28")]
+    private var notificationTokens: [NotificationToken] = []
+
+    @Published var memos: Results<Memo> = Memo.fetchAllMemos()
+
+    init() {
+        notificationTokens.append(memos.observe { change in
+            switch change {
+            case let .initial(results):
+                self.memos = results
+            case let .update(results, _, _, _):
+                self.memos = results
+            case let .error(error):
+                print(error.localizedDescription)
+            }
+        })
+    }
+
+    deinit {
+        notificationTokens.forEach { $0.invalidate() }
+    }
+
 }

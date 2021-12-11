@@ -8,7 +8,7 @@ struct MemoListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                NavigationLink(destination: CreateMemoView(),
+                NavigationLink(destination: AddMemoView(),
                                isActive: self.$showingAddMemoView) { EmptyView() }
                 List (viewModel.memos) { memo in
                     NavigationLink(destination: EditMemoView(memo: memo)) {
