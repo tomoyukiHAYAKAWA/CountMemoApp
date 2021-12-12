@@ -6,7 +6,7 @@ struct AddMemoView: View {
 
     @State private var content = ""
     @State private var title = ""
-    @State private var saveMemo = false
+    @State private var sumCount = ""
     @State private var isEditing = false
 
     var body: some View {
@@ -34,6 +34,7 @@ struct AddMemoView: View {
                 Text("計算結果なし")
                 Spacer()
                 Button( action: {
+                    // 計算する処理をしてString型にしてsumCountに入れる
                 }) { Text("計算する")
                         .fontWeight(.semibold)
                         .frame(width: 100, height: 44)
@@ -53,7 +54,7 @@ struct AddMemoView: View {
                     let memo = Memo()
                     memo.title = self.title
                     memo.content = self.content
-                    memo.registrationDate = "2021/12/12"
+                    memo.registrationDate = viewModel.toStringRegistrationDate()
                     memo.sumCount = "0"
                     viewModel.addMemo(memo: memo)
                 }) { Text("👌") }
