@@ -2,7 +2,7 @@ import SwiftUI
 
 struct AddMemoView: View {
 
-    @ObservedObject var viewModel = AddMemoViewModel()
+    @ObservedObject var viewModel = MemoViewModel()
 
     @State private var content = ""
     @State private var title = ""
@@ -11,7 +11,7 @@ struct AddMemoView: View {
 
     var body: some View {
         VStack {
-            TextField("タイトルを入力...!(なしでもOK👍)", text: $title,
+            TextField("タイトルを入力...!(なしでもOK)", text: $title,
                 onEditingChanged: { isEditing in
                     self.isEditing = isEditing
                 },
@@ -52,7 +52,7 @@ struct AddMemoView: View {
             .navigationBarItems(
                 trailing: Button(action: {
                     let memo = Memo()
-                    memo.title = self.title
+                    memo.title = self.title.isEmpty ? "タイトルなしのメモ" : self.title
                     memo.content = self.content
                     memo.registrationDate = viewModel.toStringRegistrationDate()
                     memo.sumCount = self.sumCount
