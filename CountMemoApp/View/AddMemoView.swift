@@ -8,6 +8,8 @@ struct AddMemoView: View {
     @State private var title = ""
     @State private var sumCount = "0"
     @State private var isEditing = false
+    @State private var isShowAlert = false
+    @Environment(\.presentationMode) var presentation
 
     var body: some View {
         VStack {
@@ -51,13 +53,24 @@ struct AddMemoView: View {
             .navigationBarTitle("✍️", displayMode: .inline)
             .navigationBarItems(
                 trailing: Button(action: {
-                    let memo = Memo()
-                    memo.title = self.title.isEmpty ? "タイトルなしのメモ" : self.title
-                    memo.content = self.content
-                    memo.registrationDate = viewModel.toStringRegistrationDate()
-                    memo.sumCount = self.sumCount
-                    viewModel.addMemo(memo: memo)
+                    self.isShowAlert.toggle()
                 }) { Text("👌") }
+                    .alert(isPresented: $isShowAlert) {
+                        Alert(
+                            title: Text("注意"),
+                            message: Text("メモを保存しますか？"),
+                            primaryButton: .default(Text("OK"), action: {
+                                let memo = Memo()
+                                memo.title = self.title.isEmpty ? "タイトルなしのメモ" : self.title
+                                memo.content = self.content
+                                memo.registrationDate = viewModel.toStringRegistrationDate()
+                                memo.sumCount = self.sumCount
+                                viewModel.addMemo(memo: memo)
+                                self.presentation.wrappedValue.dismiss()
+                            }),
+                            secondaryButton: .destructive(Text("キャンセル"))
+                        )
+                    }
             )
         }
         .onTapGesture { UIApplication.shared.closeKeyboard() }
