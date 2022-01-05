@@ -5,7 +5,7 @@ class Memo: Object, Identifiable {
     @objc dynamic var id: String = NSUUID().uuidString
     @objc dynamic var title: String?
     @objc dynamic var content: String!
-    @objc dynamic var sumCount: String?
+    @objc dynamic var computedValue: String?
     @objc dynamic var registrationDate: String!
 
     private static var realm = try! Realm()

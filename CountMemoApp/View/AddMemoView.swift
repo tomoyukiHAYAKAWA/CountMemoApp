@@ -6,7 +6,7 @@ struct AddMemoView: View {
 
     @State private var content = ""
     @State private var title = ""
-    @State private var sumCount = "0"
+    @State private var computedValue = "0"
     @State private var isEditing = false
     @State private var isShowAlert = false
     @Environment(\.presentationMode) var presentation
@@ -33,10 +33,10 @@ struct AddMemoView: View {
             BottomBorder(width: 1)
                 .foregroundColor(.gray)
             HStack {
-                Text(sumCount)
+                Text(computedValue)
                 Spacer()
                 Button( action: {
-                    self.sumCount = viewModel.extractValue(text: self.content)
+                    self.computedValue = viewModel.extractValue(text: self.content)
                 }) { Text("計算する")
                         .fontWeight(.semibold)
                         .frame(width: 100, height: 44)
@@ -64,7 +64,7 @@ struct AddMemoView: View {
                                 memo.title = self.title.isEmpty ? "タイトルなしのメモ" : self.title
                                 memo.content = self.content
                                 memo.registrationDate = viewModel.toStringRegistrationDate()
-                                memo.sumCount = self.sumCount
+                                memo.computedValue = self.computedValue
                                 viewModel.addMemo(memo: memo)
                                 self.presentation.wrappedValue.dismiss()
                             }),

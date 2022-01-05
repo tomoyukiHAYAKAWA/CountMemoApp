@@ -38,7 +38,7 @@ struct MemoListRow: View {
                     .font(.title)
                     .fontWeight(.bold)
                 HStack(alignment: .bottom, spacing: 3, content:  {
-                    let sumCount = memo.sumCount ?? "なし"
+                    let sumCount = memo.computedValue ?? "なし"
                     Text("カウント: \(String(sumCount))")
                         .font(.caption)
                         .foregroundColor(.gray)
