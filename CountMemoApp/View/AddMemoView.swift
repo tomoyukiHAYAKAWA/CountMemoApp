@@ -34,6 +34,8 @@ struct AddMemoView: View {
                 .foregroundColor(.gray)
             HStack {
                 Text(computedValue)
+                    .fontWeight(.bold)
+                    .font(.title)
                 Spacer()
                 Button( action: {
                     self.computedValue = viewModel.extractValue(text: self.content)
@@ -42,9 +44,9 @@ struct AddMemoView: View {
                         .frame(width: 100, height: 44)
                         .foregroundColor(Color.blue)
                         .background(Color(.white))
-                        .cornerRadius(22)
+                        .cornerRadius(11)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 22)
+                            RoundedRectangle(cornerRadius: 11)
                                 .stroke(Color.blue, lineWidth: 1.0)
                         )
                 }

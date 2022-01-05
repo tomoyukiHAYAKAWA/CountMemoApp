@@ -27,6 +27,7 @@
 		CC1694D027625264008099F9 /* Realm.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94727532B8700B0452D /* Realm.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CC1694D227625265008099F9 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; };
 		CC1694D327625265008099F9 /* RealmSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CC8AFFC12785EA5700AA8F5D /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = CC8AFFC02785EA3D00AA8F5D /* default.realm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		CC0AA94327529AE700B0452D /* Extension + UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extension + UIApplication.swift"; path = "CountMemoApp/Extensions/Extension + UIApplication.swift"; sourceTree = SOURCE_ROOT; };
 		CC0AA94727532B8700B0452D /* Realm.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Realm.xcframework; path = Carthage/Build/Realm.xcframework; sourceTree = "<group>"; };
 		CC0AA94827532B8700B0452D /* RealmSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RealmSwift.xcframework; path = Carthage/Build/RealmSwift.xcframework; sourceTree = "<group>"; };
+		CC8AFFC02785EA3D00AA8F5D /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				CC0AA8FA2751389900B0452D /* AppDelegate.swift */,
 				CC0AA8FC2751389900B0452D /* SceneDelegate.swift */,
+				CC8AFFC02785EA3D00AA8F5D /* default.realm */,
 				CC0AA93A2751EC9100B0452D /* Entities */,
 				CC0AA9392751EC7700B0452D /* View */,
 				CC0AA9382751EC6100B0452D /* ViewModel */,
@@ -327,6 +330,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8AFFC12785EA5700AA8F5D /* default.realm in Resources */,
 				CC0AA93C2751EF0D00B0452D /* Main.storyboard in Resources */,
 				CC0AA9072751389B00B0452D /* LaunchScreen.storyboard in Resources */,
 				CC0AA9042751389B00B0452D /* Assets.xcassets in Resources */,

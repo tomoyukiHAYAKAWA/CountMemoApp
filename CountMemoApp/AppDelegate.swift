@@ -1,19 +1,19 @@
-//
-//  AppDelegate.swift
-//  CountMemoApp
-//
-//  Created by Tomoyuki Hayakawa on 2021/11/27.
-//
-
 import UIKit
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
+        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
+        if !FileManager.default.fileExists(atPath: defaultRealmPath.path) {
+            do {
+                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
+            } catch let error {
+                print("error: \(error)")
+            }
+        }
         return true
     }
 
