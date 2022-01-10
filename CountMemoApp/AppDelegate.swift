@@ -5,15 +5,15 @@ import RealmSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
-        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
-        if !FileManager.default.fileExists(atPath: defaultRealmPath.path) {
-            do {
-                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
-            } catch let error {
-                print("error: \(error)")
-            }
-        }
+//        let defaultRealmPath = Realm.Configuration.defaultConfiguration.fileURL!
+//        let bundleRealmPath = Bundle.main.url(forResource: "default", withExtension: "realm")
+//        if !FileManager.default.fileExists(atPath: defaultRealmPath.path) {
+//            do {
+//                try FileManager.default.copyItem(at: bundleRealmPath!, to: defaultRealmPath)
+//            } catch let error {
+//                print("error: \(error)")
+//            }
+//        }
         return true
     }
 

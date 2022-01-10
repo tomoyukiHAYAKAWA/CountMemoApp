@@ -1,7 +1,10 @@
 import SwiftUI
+import RealmSwift
+import Combine
 
 struct AddMemoView: View {
 
+    @EnvironmentObject var store: MemoStore
     @ObservedObject var viewModel = MemoViewModel()
 
     @State private var content = ""
@@ -12,68 +15,72 @@ struct AddMemoView: View {
     @Environment(\.presentationMode) var presentation
 
     var body: some View {
-        VStack {
-            TextField("タイトルを入力...!(なしでもOK)", text: $title,
-                onEditingChanged: { isEditing in
+        NavigationView {
+            VStack {
+                TextField("Title(nullable)", text: $title,
+                          onEditingChanged: { isEditing in
                     self.isEditing = isEditing
                 },
-                onCommit: {
+                          onCommit: {
                     self.title = title
                 }
-            )
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-                .shadow(color: isEditing ? .blue : .clear, radius: 3)
-            TextView(text: $content,
-                onCommit: {
+                )
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .shadow(color: isEditing ? .blue : .clear, radius: 3)
+                TextView(text: $content,
+                         onCommit: {
                     self.content = content
                 }
-            )
-                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-            BottomBorder(width: 1)
-                .foregroundColor(.gray)
-            HStack {
-                Text(computedValue)
-                    .fontWeight(.bold)
-                    .font(.title)
-                Spacer()
-                Button( action: {
-                    self.computedValue = viewModel.extractValue(text: self.content)
-                }) { Text("計算する")
-                        .fontWeight(.semibold)
-                        .frame(width: 100, height: 44)
-                        .foregroundColor(Color.blue)
-                        .background(Color(.white))
-                        .cornerRadius(11)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 11)
-                                .stroke(Color.blue, lineWidth: 1.0)
-                        )
-                }
-            }
-            .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-            .navigationBarTitle("✍️", displayMode: .inline)
-            .navigationBarItems(
-                trailing: Button(action: {
-                    self.isShowAlert.toggle()
-                }) { Text("👌") }
-                    .alert(isPresented: $isShowAlert) {
-                        Alert(
-                            title: Text("注意"),
-                            message: Text("メモを保存しますか？"),
-                            primaryButton: .default(Text("OK"), action: {
-                                let memo = Memo()
-                                memo.title = self.title.isEmpty ? "タイトルなしのメモ" : self.title
-                                memo.content = self.content
-                                memo.registrationDate = viewModel.toStringRegistrationDate()
-                                memo.computedValue = self.computedValue
-                                viewModel.addMemo(memo: memo)
-                                self.presentation.wrappedValue.dismiss()
-                            }),
-                            secondaryButton: .destructive(Text("キャンセル"))
-                        )
+                )
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+                BottomBorder(width: 1)
+                    .foregroundColor(.gray)
+                HStack {
+                    Text(computedValue)
+                        .fontWeight(.bold)
+                        .font(.title)
+                    Spacer()
+                    Button( action: {
+                        self.computedValue = viewModel.extractValue(text: self.content)
+                    }) { Text("Compute")
+                            .fontWeight(.semibold)
+                            .frame(width: 100, height: 44)
+                            .foregroundColor(Color.blue)
+                            .background(Color(.white))
+                            .cornerRadius(11)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 11)
+                                    .stroke(Color.blue, lineWidth: 1.0)
+                            )
                     }
-            )
+                }
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                .navigationBarTitle("✍️", displayMode: .inline)
+                .navigationBarItems(
+                    trailing: Button(action: {
+                        self.isShowAlert.toggle()
+                    }) { Text("Save") }
+                        .alert(isPresented: $isShowAlert) {
+                            Alert(
+                                title: Text("注意"),
+                                message: Text("メモを保存しますか？"),
+                                primaryButton: .default(Text("OK"), action: {
+                                    let memo = Memo.init(id: UUID().uuidString,
+                                                         title: self.title.isEmpty ? "タイトルなしのメモ" : self.title,
+                                                         content: self.content,
+                                                         computedValue: self.computedValue,
+                                                         registrationDate: viewModel.toStringRegistrationDate()
+                                    )
+                                    // 追加処理をする
+                                    store.addMemo(memo: memo)
+                                    self.presentation.wrappedValue.dismiss()
+                                }),
+                                secondaryButton: .destructive(Text("キャンセル"))
+                            )
+                        }
+                )
+            }
         }
         .onTapGesture { UIApplication.shared.closeKeyboard() }
     }

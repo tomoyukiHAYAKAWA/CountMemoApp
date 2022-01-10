@@ -71,13 +71,13 @@ struct EditMemoView: View {
                             title: Text("注意"),
                             message: Text("メモを更新しますか？"),
                             primaryButton: .default(Text("OK"), action: {
-                                let memo = Memo()
-                                memo.id = self.memo.id
-                                memo.title = self.title
-                                memo.content = self.content
-                                memo.registrationDate = viewModel.toStringRegistrationDate()
-                                memo.computedValue = self.computedValue
-                                viewModel.update(memo: memo)
+                                let memo = Memo.init(id: self.memo.id,
+                                                     title: self.title,
+                                                     content: self.content,
+                                                     computedValue: self.computedValue,
+                                                     registrationDate: viewModel.toStringRegistrationDate()
+                                                    )
+                                // 更新処理をする
                                 self.presentation.wrappedValue.dismiss()
                             }),
                             secondaryButton: .destructive(Text("キャンセル"))

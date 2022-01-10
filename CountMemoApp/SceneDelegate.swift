@@ -1,5 +1,6 @@
 import UIKit
 import SwiftUI
+import RealmSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,10 +14,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: MemoListView())
-            self.window = window
-            window.makeKeyAndVisible()
+            do {
+                let window = UIWindow(windowScene: windowScene)
+                let MemoListView = MemoListView().environmentObject(MemoStore())
+                window.rootViewController = UIHostingController(rootView: MemoListView)
+                self.window = window
+                window.makeKeyAndVisible()
+            } catch let error {
+                fatalError("Failed to open Realm.Error:\(error.localizedDescription)")
+            }
         }
     }
 

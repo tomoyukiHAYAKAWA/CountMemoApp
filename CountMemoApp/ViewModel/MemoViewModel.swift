@@ -1,15 +1,8 @@
 import Foundation
 import SwiftUI
+import RealmSwift
 
 class MemoViewModel: ObservableObject {
-
-    func addMemo(memo: Memo) {
-        Memo.addMemo(memo: memo)
-    }
-
-    func update(memo: Memo) {
-        Memo.updateMemo(memo: memo)
-    }
 
     /// 登録日時をStringにして返す
     func toStringRegistrationDate() -> String {

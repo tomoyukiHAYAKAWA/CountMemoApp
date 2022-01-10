@@ -15,7 +15,7 @@
 		CC0AA91C2751389C00B0452D /* CountMemoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA91B2751389C00B0452D /* CountMemoAppUITests.swift */; };
 		CC0AA91E2751389C00B0452D /* CountMemoAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA91D2751389C00B0452D /* CountMemoAppUITestsLaunchTests.swift */; };
 		CC0AA92B2751398200B0452D /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA92A2751398100B0452D /* MemoListView.swift */; };
-		CC0AA92D27513C2500B0452D /* MemoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA92C27513C2500B0452D /* MemoModel.swift */; };
+		CC0AA92D27513C2500B0452D /* MemoDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA92C27513C2500B0452D /* MemoDB.swift */; };
 		CC0AA92F27513DE800B0452D /* MemoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA92E27513DE800B0452D /* MemoListViewModel.swift */; };
 		CC0AA93327515BFB00B0452D /* AddMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA93227515BFB00B0452D /* AddMemoView.swift */; };
 		CC0AA9352751DAB600B0452D /* EditMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA9342751DAB600B0452D /* EditMemoView.swift */; };
@@ -28,6 +28,8 @@
 		CC1694D227625265008099F9 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; };
 		CC1694D327625265008099F9 /* RealmSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CC8AFFC12785EA5700AA8F5D /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = CC8AFFC02785EA3D00AA8F5D /* default.realm */; };
+		CC8AFFC32785F4CF00AA8F5D /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8AFFC22785F4CF00AA8F5D /* Memo.swift */; };
+		CC8AFFC52785F6C700AA8F5D /* MemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8AFFC42785F6C700AA8F5D /* MemoStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +77,7 @@
 		CC0AA91B2751389C00B0452D /* CountMemoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountMemoAppUITests.swift; sourceTree = "<group>"; };
 		CC0AA91D2751389C00B0452D /* CountMemoAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountMemoAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CC0AA92A2751398100B0452D /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
-		CC0AA92C27513C2500B0452D /* MemoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoModel.swift; path = Entities/MemoModel.swift; sourceTree = "<group>"; };
+		CC0AA92C27513C2500B0452D /* MemoDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoDB.swift; path = Entities/MemoDB.swift; sourceTree = "<group>"; };
 		CC0AA92E27513DE800B0452D /* MemoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoListViewModel.swift; path = ViewModel/MemoListViewModel.swift; sourceTree = "<group>"; };
 		CC0AA93227515BFB00B0452D /* AddMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMemoView.swift; sourceTree = "<group>"; };
 		CC0AA9342751DAB600B0452D /* EditMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemoView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		CC0AA94727532B8700B0452D /* Realm.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Realm.xcframework; path = Carthage/Build/Realm.xcframework; sourceTree = "<group>"; };
 		CC0AA94827532B8700B0452D /* RealmSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RealmSwift.xcframework; path = Carthage/Build/RealmSwift.xcframework; sourceTree = "<group>"; };
 		CC8AFFC02785EA3D00AA8F5D /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
+		CC8AFFC22785F4CF00AA8F5D /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Memo.swift; path = Entities/Memo.swift; sourceTree = "<group>"; };
+		CC8AFFC42785F6C700AA8F5D /* MemoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +198,9 @@
 		CC0AA93A2751EC9100B0452D /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				CC0AA92C27513C2500B0452D /* MemoModel.swift */,
+				CC8AFFC42785F6C700AA8F5D /* MemoStore.swift */,
+				CC0AA92C27513C2500B0452D /* MemoDB.swift */,
+				CC8AFFC22785F4CF00AA8F5D /* Memo.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -359,11 +365,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0AA93327515BFB00B0452D /* AddMemoView.swift in Sources */,
-				CC0AA92D27513C2500B0452D /* MemoModel.swift in Sources */,
+				CC8AFFC52785F6C700AA8F5D /* MemoStore.swift in Sources */,
+				CC0AA92D27513C2500B0452D /* MemoDB.swift in Sources */,
 				CC0AA9372751EC1900B0452D /* MemoViewModel.swift in Sources */,
 				CC0AA93E2751F3E500B0452D /* Utility+Bodrder.swift in Sources */,
 				CC0AA92F27513DE800B0452D /* MemoListViewModel.swift in Sources */,
 				CC0AA9352751DAB600B0452D /* EditMemoView.swift in Sources */,
+				CC8AFFC32785F4CF00AA8F5D /* Memo.swift in Sources */,
 				CC0AA94427529AE700B0452D /* Extension + UIApplication.swift in Sources */,
 				CC0AA8FB2751389900B0452D /* AppDelegate.swift in Sources */,
 				CC0AA92B2751398200B0452D /* MemoListView.swift in Sources */,

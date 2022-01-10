@@ -1,25 +1,56 @@
 import SwiftUI
 
 struct MemoListView: View {
-    
-    @ObservedObject var viewModel = MemoListViewModel()
+
+    @EnvironmentObject var store: MemoStore
     @State private var showingAddMemoView = false
-    
+
     var body: some View {
         NavigationView {
-            VStack {
-                NavigationLink(destination: AddMemoView(),
-                               isActive: self.$showingAddMemoView) { EmptyView() }
-                List (viewModel.memos) { memo in
-                    NavigationLink(destination: EditMemoView(memo: memo)) {
+            ZStack {
+                List {
+                    ForEach(store.memos, id: \.id) { memo in
                         MemoListRow(memo: memo)
                     }
+                    .onDelete(perform: { indexSet in
+                        print(indexSet)
+                    })
                 }
-                .listStyle(PlainListStyle())
-                .navigationBarTitle("🗒", displayMode: .inline)
-                .navigationBarItems(
-                    trailing: Button(action: { self.showingAddMemoView = true }) { Text("✍️") }
+                .navigationBarTitle("Memo List")
+                .sheet(isPresented: $showingAddMemoView, onDismiss: { store.fetchMemos() },
+                       content: { AddMemoView().environmentObject(MemoStore()) }
                 )
+                FloatingButton(tapped: {
+                    showingAddMemoView.toggle()
+                })
+            }
+        }
+        .onAppear(perform: {
+            store.fetchMemos()
+        })
+    }
+}
+
+struct FloatingButton: View {
+    var tapped: ()->()
+    var body: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Button(action: {
+                    self.tapped()
+                }, label: {
+                    Image(systemName: "pencil")
+                        .foregroundColor(.white)
+                        .font(.system(size: 24))
+                })
+                    .frame(width: 60, height: 60)
+                    .background(Color.blue)
+                    .cornerRadius(30.0)
+                    .shadow(color: .gray, radius: 3, x: 3, y: 3)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 16.0, trailing: 16.0))
+
             }
         }
     }
