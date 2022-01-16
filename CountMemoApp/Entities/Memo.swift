@@ -1,11 +1,11 @@
 import Foundation
 import UIKit
 
-struct Memo: Identifiable {
+struct Memo: Identifiable, Hashable {
     var id: String = NSUUID().uuidString
-    var title: String?
+    var title: String!
     var content: String!
-    var computedValue: String?
+    var computedValue: String!
     var registrationDate: String!
 }
 

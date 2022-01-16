@@ -29,10 +29,17 @@ final class MemoStore: ObservableObject {
         fetchMemos()
     }
 
-    func updateMemo(memo: MemoDB) {
-//        try! realm.write {
-//            realm.add(memo, update: .modified)
-//        }
+    func updateMemo(memo: Memo) {
+        let memoDB = MemoDB()
+        memoDB.id = memo.id
+        memoDB.title = memo.title
+        memoDB.content = memo.content
+        memoDB.computedValue = memo.computedValue
+        memoDB.registrationDate = memo.registrationDate
+        guard let realm = try? Realm() else {return }
+        try? realm.write {
+            realm.add(memoDB, update: .modified)
+        }
     }
 
     func deleteMemo(id: String) {

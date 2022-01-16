@@ -3,25 +3,40 @@ import SwiftUI
 struct MemoListView: View {
 
     @EnvironmentObject var store: MemoStore
-    @State private var showingAddMemoView = false
+    @State private var showSeetView = false
+    @State private var isListTapped = false
+    @State var editingMemo: Memo?
 
     var body: some View {
         NavigationView {
             ZStack {
                 List {
-                    ForEach(store.memos, id: \.id) { memo in
+                    ForEach(store.memos, id: \.self) { memo in
                         MemoListRow(memo: memo)
+                            .onTapGesture {
+                                isListTapped.toggle()
+                                editingMemo = memo
+                                print(memo)
+                            }
+//                            .sheet(isPresented: $isListTapped, onDismiss: { store.fetchMemos() },
+//                                   content: { EditMemoView(memo: memo).environmentObject(MemoStore()) }
+//                            )
                     }
                     .onDelete(perform: { indexSet in
                         print(indexSet)
                     })
+                    .sheet(item: $editingMemo, onDismiss: { store.fetchMemos() })
+                    { memo in
+                        EditMemoView(memo: memo).environmentObject(MemoStore())
+                    }
                 }
                 .navigationBarTitle("Memo List")
-                .sheet(isPresented: $showingAddMemoView, onDismiss: { store.fetchMemos() },
-                       content: { AddMemoView().environmentObject(MemoStore()) }
+                .sheet(isPresented: $showSeetView, onDismiss: { store.fetchMemos() },
+                       content: {
+                    AddMemoView().environmentObject(MemoStore()) }
                 )
                 FloatingButton(tapped: {
-                    showingAddMemoView.toggle()
+                    showSeetView.toggle()
                 })
             }
         }
@@ -41,7 +56,7 @@ struct FloatingButton: View {
                 Button(action: {
                     self.tapped()
                 }, label: {
-                    Image(systemName: "pencil")
+                    Image(systemName: "plus")
                         .foregroundColor(.white)
                         .font(.system(size: 24))
                 })
@@ -63,19 +78,16 @@ struct MemoListRow: View {
     var body: some View {
         ZStack(alignment: .leading) {
             VStack(alignment: .leading, spacing: 10, content: {
-                let title = memo.title ?? "タイトルなし"
-
-                Text(title)
+                Text(memo.title)
                     .font(.title)
                     .fontWeight(.bold)
                 HStack(alignment: .bottom, spacing: 3, content:  {
-                    let sumCount = memo.computedValue ?? "なし"
-                    Text("カウント: \(String(sumCount))")
+                    Text("カウント: \(memo.computedValue)")
                         .font(.caption)
                         .foregroundColor(.gray)
                         .fontWeight(.bold)
                     Spacer()
-                    Text("作成日: \(memo.registrationDate!)")
+                    Text("作成日: \(memo.registrationDate)")
                         .font(.caption)
                         .foregroundColor(.gray)
                         .fontWeight(.bold)
