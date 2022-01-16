@@ -18,12 +18,9 @@ struct MemoListView: View {
                                 editingMemo = memo
                                 print(memo)
                             }
-//                            .sheet(isPresented: $isListTapped, onDismiss: { store.fetchMemos() },
-//                                   content: { EditMemoView(memo: memo).environmentObject(MemoStore()) }
-//                            )
                     }
                     .onDelete(perform: { indexSet in
-                        print(indexSet)
+                        store.deleteMemo(with: indexSet)
                     })
                     .sheet(item: $editingMemo, onDismiss: { store.fetchMemos() })
                     { memo in

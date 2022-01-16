@@ -40,15 +40,21 @@ final class MemoStore: ObservableObject {
         try? realm.write {
             realm.add(memoDB, update: .modified)
         }
+        fetchMemos()
     }
 
-    func deleteMemo(id: String) {
+    func deleteMemo(with indexSet: IndexSet) {
+        var memo: Memo?
+        indexSet.forEach ({ index in
+            memo = memos[index]
+        })
         guard let realm = try? Realm() else {return }
         let memoResults = realm.objects(MemoDB.self)
-        guard let memoDB = memoResults.first(where: { $0.id == id }) else { return }
+        guard let memoDB = memoResults.first(where: { $0.id == memo?.id }) else { return }
         try! realm.write {
             realm.delete(memoDB)
         }
+        fetchMemos()
     }
 
 }
