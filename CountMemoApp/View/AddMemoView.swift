@@ -51,7 +51,7 @@ struct AddMemoView: View {
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
-                .navigationBarTitle("✍️", displayMode: .inline)
+                .navigationBarTitle("New Memo", displayMode: .inline)
                 .navigationBarItems(
                     trailing: Button(action: {
                         self.isShowAlert.toggle()

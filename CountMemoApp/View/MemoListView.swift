@@ -23,7 +23,7 @@ struct MemoListView: View {
                         EditMemoView(memo: memo).environmentObject(MemoStore())
                     }
                 }
-                .navigationBarTitle("Memo List")
+                .navigationBarTitle("Memo List", displayMode: .large)
                 .sheet(isPresented: $showSeetView, onDismiss: { store.fetchMemos() },
                        content: {
                     AddMemoView().environmentObject(MemoStore()) }
