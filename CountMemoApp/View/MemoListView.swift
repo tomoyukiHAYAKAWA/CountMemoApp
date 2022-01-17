@@ -13,11 +13,7 @@ struct MemoListView: View {
                 List {
                     ForEach(store.memos, id: \.self) { memo in
                         MemoListRow(memo: memo)
-                            .onTapGesture {
-                                isListTapped.toggle()
-                                editingMemo = memo
-                                print(memo)
-                            }
+                            .onTapGesture { editingMemo = memo }
                     }
                     .onDelete(perform: { indexSet in
                         store.deleteMemo(with: indexSet)
@@ -79,12 +75,12 @@ struct MemoListRow: View {
                     .font(.title)
                     .fontWeight(.bold)
                 HStack(alignment: .bottom, spacing: 3, content:  {
-                    Text("カウント: \(memo.computedValue)")
+                    Text("Value: \(memo.computedValue)")
                         .font(.caption)
                         .foregroundColor(.gray)
                         .fontWeight(.bold)
                     Spacer()
-                    Text("作成日: \(memo.registrationDate)")
+                    Text("Created: \(memo.registrationDate)")
                         .font(.caption)
                         .foregroundColor(.gray)
                         .fontWeight(.bold)

@@ -17,22 +17,17 @@ struct AddMemoView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Title(nullable)", text: $title,
-                          onEditingChanged: { isEditing in
+                TextField("Title(nullable)", text: $title, onEditingChanged: { isEditing in
                     self.isEditing = isEditing
-                },
-                          onCommit: {
+                }, onCommit: {
                     self.title = title
-                }
-                )
+                })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                     .shadow(color: isEditing ? .blue : .clear, radius: 3)
-                TextView(text: $content,
-                         onCommit: {
+                TextView(text: $content, onCommit: {
                     self.content = content
-                }
-                )
+                })
                     .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                 BottomBorder(width: 1)
                     .foregroundColor(.gray)

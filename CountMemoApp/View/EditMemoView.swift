@@ -39,7 +39,7 @@ struct EditMemoView: View {
                     Spacer()
                     Button( action: {
                         self.computedValue = viewModel.extractValue(text: content)
-                    }) { Text("計算する")
+                    }) { Text("Compute")
                             .fontWeight(.semibold)
                             .frame(width: 100, height: 44)
                             .foregroundColor(Color.blue)
@@ -56,7 +56,7 @@ struct EditMemoView: View {
                 .navigationBarItems(
                     trailing: Button(action: {
                         self.isShowAlert.toggle()
-                    }) { Text("👌") }
+                    }) { Text("Save") }
                         .alert(isPresented: $isShowAlert) {
                             Alert(
                                 title: Text("注意"),
