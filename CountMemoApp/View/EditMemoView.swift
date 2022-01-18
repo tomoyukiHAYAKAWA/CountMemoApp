@@ -17,28 +17,13 @@ struct EditMemoView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TextField("", text: $title,
-                onEditingChanged: { isEditing in
-                    self.isEditing = isEditing
-                }, onCommit: {
-                    self.title = title
-                })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .shadow(color: isEditing ? .blue : .clear, radius: 3)
-                TextView(text: $content, onCommit: {
-                    self.content = content
-                })
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                BottomBorder(width: 1)
-                    .foregroundColor(.gray)
                 HStack {
                     Text(computedValue)
                         .fontWeight(.bold)
                         .font(.title)
                     Spacer()
                     Button( action: {
-                        self.computedValue = viewModel.extractValue(text: content)
+                        self.computedValue = viewModel.extractValue(text: self.content)
                     }) { Text("Compute")
                             .fontWeight(.semibold)
                             .frame(width: 100, height: 44)
@@ -51,7 +36,21 @@ struct EditMemoView: View {
                             )
                     }
                 }
-                .padding(EdgeInsets(top: 0, leading: 20, bottom: 10, trailing: 20))
+                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                TextField("", text: $title,
+                onEditingChanged: { isEditing in
+                    self.isEditing = isEditing
+                }, onCommit: {
+                    self.title = title
+                })
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                    .shadow(color: isEditing ? .blue : .clear, radius: 3)
+                TextView(text: $content, onCommit: {
+                    self.content = content
+                })
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
                 .navigationBarTitle("Edit Memo", displayMode: .inline)
                 .navigationBarItems(
                     trailing: Button(action: {
