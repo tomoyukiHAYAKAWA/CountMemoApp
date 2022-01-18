@@ -26,6 +26,7 @@ final class MemoStore: ObservableObject {
         try? realm.write{
             realm.add(memoDB)
         }
+        fetchMemos()
     }
 
     func updateMemo(memo: Memo) {
@@ -39,6 +40,7 @@ final class MemoStore: ObservableObject {
         try? realm.write {
             realm.add(memoDB, update: .modified)
         }
+        fetchMemos()
     }
 
     func deleteMemo(with indexSet: IndexSet) {

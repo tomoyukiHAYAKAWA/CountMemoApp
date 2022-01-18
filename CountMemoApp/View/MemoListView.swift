@@ -3,33 +3,29 @@ import SwiftUI
 struct MemoListView: View {
 
     @EnvironmentObject var store: MemoStore
-    @State private var showSeetView = false
+    @State private var isShowAddMemoView = false
     @State private var isListTapped = false
     @State var editingMemo: Memo?
 
     var body: some View {
         NavigationView {
             ZStack {
+                NavigationLink(destination: AddMemoView().environmentObject(MemoStore()), isActive: $isShowAddMemoView) {
+                    EmptyView()
+                }
                 List {
                     ForEach(store.memos, id: \.self) { memo in
-                        MemoListRow(memo: memo)
-                            .onTapGesture { editingMemo = memo }
+                        NavigationLink(destination: EditMemoView(memo: memo).environmentObject(MemoStore())) {
+                            MemoListRow(memo: memo)
+                        }
                     }
                     .onDelete(perform: { indexSet in
                         store.deleteMemo(with: indexSet)
                     })
-                    .sheet(item: $editingMemo, onDismiss: { store.fetchMemos() })
-                    { memo in
-                        EditMemoView(memo: memo).environmentObject(MemoStore())
-                    }
                 }
                 .navigationBarTitle("Memo List", displayMode: .large)
-                .sheet(isPresented: $showSeetView, onDismiss: { store.fetchMemos() },
-                       content: {
-                    AddMemoView().environmentObject(MemoStore()) }
-                )
                 FloatingButton(tapped: {
-                    showSeetView.toggle()
+                    isShowAddMemoView.toggle()
                 })
             }
         }

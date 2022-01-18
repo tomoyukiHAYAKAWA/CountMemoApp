@@ -15,67 +15,65 @@ struct EditMemoView: View {
     @Environment(\.presentationMode) var presentation
 
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Text(computedValue)
-                        .fontWeight(.bold)
-                        .font(.title)
-                    Spacer()
-                    Button( action: {
-                        self.computedValue = viewModel.extractValue(text: self.content)
-                    }) { Text("Compute")
-                            .fontWeight(.semibold)
-                            .frame(width: 100, height: 44)
-                            .foregroundColor(Color.blue)
-                            .background(Color(.white))
-                            .cornerRadius(11)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 11)
-                                    .stroke(Color.blue, lineWidth: 1.0)
-                            )
-                    }
+        VStack {
+            HStack {
+                Text(computedValue)
+                    .fontWeight(.bold)
+                    .font(.title)
+                Spacer()
+                Button( action: {
+                    self.computedValue = viewModel.extractValue(text: self.content)
+                }) { Text("Compute")
+                        .fontWeight(.semibold)
+                        .frame(width: 100, height: 44)
+                        .foregroundColor(Color.blue)
+                        .background(Color(.white))
+                        .cornerRadius(11)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 11)
+                                .stroke(Color.blue, lineWidth: 1.0)
+                        )
                 }
-                .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-                TextField("", text: $title,
-                onEditingChanged: { isEditing in
-                    self.isEditing = isEditing
-                }, onCommit: {
-                    self.title = title
-                })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .shadow(color: isEditing ? .blue : .clear, radius: 3)
-                TextView(text: $content, onCommit: {
-                    self.content = content
-                })
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
-                .navigationBarTitle("Edit Memo", displayMode: .inline)
-                .navigationBarItems(
-                    trailing: Button(action: {
-                        self.isShowAlert.toggle()
-                    }) { Text("Save") }
-                        .alert(isPresented: $isShowAlert) {
-                            Alert(
-                                title: Text("注意"),
-                                message: Text("メモを更新しますか？"),
-                                primaryButton: .default(Text("OK"), action: {
-                                    let memo = Memo.init(id: self.id,
-                                                         title: self.title,
-                                                         content: self.content,
-                                                         computedValue: self.computedValue,
-                                                         registrationDate: self.registrationDate
-                                    )
-                                    // 更新処理をする
-                                    store.updateMemo(memo: memo)
-                                    self.presentation.wrappedValue.dismiss()
-                                }),
-                                secondaryButton: .destructive(Text("キャンセル"))
-                            )
-                        }
-                )
             }
+            .padding(EdgeInsets(top: 10, leading: 10, bottom: 0, trailing: 10))
+            TextField("", text: $title,
+            onEditingChanged: { isEditing in
+                self.isEditing = isEditing
+            }, onCommit: {
+                self.title = title
+            })
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .shadow(color: isEditing ? .blue : .clear, radius: 3)
+            TextView(text: $content, onCommit: {
+                self.content = content
+            })
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+            .navigationBarTitle("Edit Memo", displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button(action: {
+                    self.isShowAlert.toggle()
+                }) { Text("Save") }
+                    .alert(isPresented: $isShowAlert) {
+                        Alert(
+                            title: Text("注意"),
+                            message: Text("メモを更新しますか？"),
+                            primaryButton: .default(Text("OK"), action: {
+                                let memo = Memo.init(id: self.id,
+                                                     title: self.title,
+                                                     content: self.content,
+                                                     computedValue: self.computedValue,
+                                                     registrationDate: self.registrationDate
+                                )
+                                // 更新処理をする
+                                store.updateMemo(memo: memo)
+                                self.presentation.wrappedValue.dismiss()
+                            }),
+                            secondaryButton: .destructive(Text("キャンセル"))
+                        )
+                    }
+            )
         }
         .onAppear(perform: {
             self.id = memo.id
