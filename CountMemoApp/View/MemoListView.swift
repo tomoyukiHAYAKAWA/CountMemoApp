@@ -10,12 +10,16 @@ struct MemoListView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(destination: AddMemoView().environmentObject(MemoStore()), isActive: $isShowAddMemoView) {
+                NavigationLink(destination: AddMemoView().environmentObject(MemoStore()).onDisappear(perform: {
+                    store.fetchMemos()
+                }), isActive: $isShowAddMemoView) {
                     EmptyView()
                 }
                 List {
                     ForEach(store.memos, id: \.self) { memo in
-                        NavigationLink(destination: EditMemoView(memo: memo).environmentObject(MemoStore())) {
+                        NavigationLink(destination: EditMemoView(memo: memo).environmentObject(MemoStore()).onDisappear(perform: {
+                            store.fetchMemos()
+                        })) {
                             MemoListRow(memo: memo)
                         }
                     }

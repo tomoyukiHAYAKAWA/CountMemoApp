@@ -20,8 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = UIHostingController(rootView: MemoListView)
                 self.window = window
                 window.makeKeyAndVisible()
-            } catch let error {
-                fatalError("Failed to open Realm.Error:\(error.localizedDescription)")
             }
         }
     }
