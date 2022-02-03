@@ -23,6 +23,9 @@
 		CC0AA93C2751EF0D00B0452D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0AA93B2751EF0D00B0452D /* Main.storyboard */; };
 		CC0AA93E2751F3E500B0452D /* Utility+Bodrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA93D2751F3E500B0452D /* Utility+Bodrder.swift */; };
 		CC0AA94427529AE700B0452D /* Extension + UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AA94327529AE700B0452D /* Extension + UIApplication.swift */; };
+		CC0AB02E27AC1D4300DEA66F /* FloationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AB02D27AC1D4300DEA66F /* FloationButton.swift */; };
+		CC0AB03027AC1D7D00DEA66F /* MemoListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AB02F27AC1D7D00DEA66F /* MemoListRow.swift */; };
+		CC0AB03227AC1DE400DEA66F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AB03127AC1DE400DEA66F /* TextView.swift */; };
 		CC1694CF27625264008099F9 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94727532B8700B0452D /* Realm.xcframework */; };
 		CC1694D027625264008099F9 /* Realm.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94727532B8700B0452D /* Realm.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CC1694D227625265008099F9 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; };
@@ -87,6 +90,9 @@
 		CC0AA94327529AE700B0452D /* Extension + UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Extension + UIApplication.swift"; path = "CountMemoApp/Extensions/Extension + UIApplication.swift"; sourceTree = SOURCE_ROOT; };
 		CC0AA94727532B8700B0452D /* Realm.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Realm.xcframework; path = Carthage/Build/Realm.xcframework; sourceTree = "<group>"; };
 		CC0AA94827532B8700B0452D /* RealmSwift.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RealmSwift.xcframework; path = Carthage/Build/RealmSwift.xcframework; sourceTree = "<group>"; };
+		CC0AB02D27AC1D4300DEA66F /* FloationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloationButton.swift; sourceTree = "<group>"; };
+		CC0AB02F27AC1D7D00DEA66F /* MemoListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListRow.swift; sourceTree = "<group>"; };
+		CC0AB03127AC1DE400DEA66F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		CC8AFFC02785EA3D00AA8F5D /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		CC8AFFC22785F4CF00AA8F5D /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Memo.swift; path = Entities/Memo.swift; sourceTree = "<group>"; };
 		CC8AFFC42785F6C700AA8F5D /* MemoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
@@ -189,8 +195,11 @@
 			isa = PBXGroup;
 			children = (
 				CC0AA93227515BFB00B0452D /* AddMemoView.swift */,
+				CC0AB03127AC1DE400DEA66F /* TextView.swift */,
 				CC0AA9342751DAB600B0452D /* EditMemoView.swift */,
 				CC0AA92A2751398100B0452D /* MemoListView.swift */,
+				CC0AB02F27AC1D7D00DEA66F /* MemoListRow.swift */,
+				CC0AB02D27AC1D4300DEA66F /* FloationButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -366,11 +375,14 @@
 			files = (
 				CC0AA93327515BFB00B0452D /* AddMemoView.swift in Sources */,
 				CC8AFFC52785F6C700AA8F5D /* MemoStore.swift in Sources */,
+				CC0AB03027AC1D7D00DEA66F /* MemoListRow.swift in Sources */,
 				CC0AA92D27513C2500B0452D /* MemoDB.swift in Sources */,
 				CC0AA9372751EC1900B0452D /* MemoViewModel.swift in Sources */,
+				CC0AB02E27AC1D4300DEA66F /* FloationButton.swift in Sources */,
 				CC0AA93E2751F3E500B0452D /* Utility+Bodrder.swift in Sources */,
 				CC0AA92F27513DE800B0452D /* MemoListViewModel.swift in Sources */,
 				CC0AA9352751DAB600B0452D /* EditMemoView.swift in Sources */,
+				CC0AB03227AC1DE400DEA66F /* TextView.swift in Sources */,
 				CC8AFFC32785F4CF00AA8F5D /* Memo.swift in Sources */,
 				CC0AA94427529AE700B0452D /* Extension + UIApplication.swift in Sources */,
 				CC0AA8FB2751389900B0452D /* AppDelegate.swift in Sources */,
