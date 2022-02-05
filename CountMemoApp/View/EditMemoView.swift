@@ -3,7 +3,6 @@ import SwiftUI
 struct EditMemoView: View {
 
     @EnvironmentObject var store: MemoStore
-    @ObservedObject var viewModel = MemoViewModel()
     var memo: Memo
     @State private var id = ""
     @State private var title = ""
@@ -22,7 +21,7 @@ struct EditMemoView: View {
                     .font(.title)
                 Spacer()
                 Button( action: {
-                    self.computedValue = viewModel.extractValue(text: self.content)
+                    self.computedValue = store.extractValue(text: self.content)
                 }) { Text("Compute")
                         .fontWeight(.semibold)
                         .frame(width: 100, height: 44)

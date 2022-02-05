@@ -5,8 +5,6 @@ import Combine
 struct AddMemoView: View {
 
     @EnvironmentObject var store: MemoStore
-    @ObservedObject var viewModel = MemoViewModel()
-
     @State private var content = ""
     @State private var title = ""
     @State private var computedValue = "0"
@@ -22,7 +20,7 @@ struct AddMemoView: View {
                     .font(.title)
                 Spacer()
                 Button( action: {
-                    self.computedValue = viewModel.extractValue(text: self.content)
+                    self.computedValue = store.extractValue(text: self.content)
                 }) { Text("Compute")
                         .fontWeight(.semibold)
                         .frame(width: 100, height: 44)
@@ -63,7 +61,7 @@ struct AddMemoView: View {
                                                      title: self.title.isEmpty ? "タイトルなしのメモ" : self.title,
                                                      content: self.content,
                                                      computedValue: self.computedValue,
-                                                     registrationDate: viewModel.toStringRegistrationDate()
+                                                     registrationDate: store.toStringRegistrationDate()
                                 )
                                 // 追加処理をする
                                 store.addMemo(memo: memo)
