@@ -24,11 +24,11 @@
 		CC0AB02E27AC1D4300DEA66F /* FloationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AB02D27AC1D4300DEA66F /* FloationButton.swift */; };
 		CC0AB03027AC1D7D00DEA66F /* MemoListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AB02F27AC1D7D00DEA66F /* MemoListRow.swift */; };
 		CC0AB03227AC1DE400DEA66F /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0AB03127AC1DE400DEA66F /* TextView.swift */; };
+		CC0AB03627AE619A00DEA66F /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = CC0AB03527AE5EB600DEA66F /* default.realm */; };
 		CC1694CF27625264008099F9 /* Realm.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94727532B8700B0452D /* Realm.xcframework */; };
 		CC1694D027625264008099F9 /* Realm.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94727532B8700B0452D /* Realm.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CC1694D227625265008099F9 /* RealmSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; };
 		CC1694D327625265008099F9 /* RealmSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CC0AA94827532B8700B0452D /* RealmSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CC8AFFC12785EA5700AA8F5D /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = CC8AFFC02785EA3D00AA8F5D /* default.realm */; };
 		CC8AFFC32785F4CF00AA8F5D /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8AFFC22785F4CF00AA8F5D /* Memo.swift */; };
 		CC8AFFC52785F6C700AA8F5D /* MemoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8AFFC42785F6C700AA8F5D /* MemoStore.swift */; };
 /* End PBXBuildFile section */
@@ -89,7 +89,7 @@
 		CC0AB02D27AC1D4300DEA66F /* FloationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloationButton.swift; sourceTree = "<group>"; };
 		CC0AB02F27AC1D7D00DEA66F /* MemoListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListRow.swift; sourceTree = "<group>"; };
 		CC0AB03127AC1DE400DEA66F /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
-		CC8AFFC02785EA3D00AA8F5D /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
+		CC0AB03527AE5EB600DEA66F /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		CC8AFFC22785F4CF00AA8F5D /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Memo.swift; path = Entities/Memo.swift; sourceTree = "<group>"; };
 		CC8AFFC42785F6C700AA8F5D /* MemoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,7 +147,7 @@
 			children = (
 				CC0AA8FA2751389900B0452D /* AppDelegate.swift */,
 				CC0AA8FC2751389900B0452D /* SceneDelegate.swift */,
-				CC8AFFC02785EA3D00AA8F5D /* default.realm */,
+				CC0AB03527AE5EB600DEA66F /* default.realm */,
 				CC0AA93A2751EC9100B0452D /* Entities */,
 				CC0AA9392751EC7700B0452D /* View */,
 				CC0AB03327AE349900DEA66F /* Store */,
@@ -339,7 +339,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC8AFFC12785EA5700AA8F5D /* default.realm in Resources */,
+				CC0AB03627AE619A00DEA66F /* default.realm in Resources */,
 				CC0AA93C2751EF0D00B0452D /* Main.storyboard in Resources */,
 				CC0AA9072751389B00B0452D /* LaunchScreen.storyboard in Resources */,
 				CC0AA9042751389B00B0452D /* Assets.xcassets in Resources */,
